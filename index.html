@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caba Running</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      position: relative;
+      width: 710px;
+      height: 400px;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      image-rendering: pixelated;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <canvas id="chão" width="710" height="400"></canvas>
+  <canvas id="nuvem" width="710" height="400"></canvas>
+  <canvas id="pedra" width="710" height="400"></canvas>
+  <canvas id="caba" width="710" height="400"></canvas>
+  <canvas id="texto" width="710" height="400"></canvas>
+  <canvas id="heart" width="710" height="400"></canvas>
+  <canvas id="hud" width="710" height="400"></canvas>
+</div>
+  <script>
+    function shakeCanvas(canvas, duracao = 300, intensidade = 5) {
+      const start = Date.now();
+      function tremor() {
+        const tempoPassado = Date.now() - start;
+        if (tempoPassado < duracao) {
+          const dx = (Math.random() - 0.5) * intensidade * 2;
+          const dy = (Math.random() - 0.5) * intensidade * 2;
+          canvas.style.transform = `translate(${dx}px, ${dy}px)`;
+          requestAnimationFrame(tremor);
+        } else {
+          canvas.style.transform = 'translate(0, 0)';
+        }
+      }
+      tremor();
+    }
+  </script>
+  <script src="códigos/geral.js"></script>
+  <!--<script src="códigos/dianoite.js"></script>-->
+</body>
+</html>
